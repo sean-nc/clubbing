@@ -1,0 +1,12 @@
+<% if current_user.profile %>
+  <%= link_to "Edit Profile", edit_user_profile_path(current_user) %>
+<% else %>
+  <%= link_to "Add Profile", new_user_profile_path(current_user) %>
+<% end %>
+
+<% if current_user.profile %>
+  <li><%= current_user.profile.first_name %></li>
+  <li><%= current_user.profile.last_name %></li>
+  <li><%= current_user.profile.gender %></li>
+  <li><%= current_user.profile.date_of_birth %></li>
+<% end %>
