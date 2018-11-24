@@ -1,2 +1,26 @@
+<ul>
+  <li><%= @venue.name %></li>
+  <li><%= @venue.location %></li>
+  <li><%= @venue.age %></li>
+  <li><%= @venue.email %></li>
+  <li><%= @venue.phone %></li>
+  <li><%= @venue.capacity %></li>
+  <li><%= @venue.music %></li>
+  <li><%= @venue.dress_code %></li>
+  <li><%= @venue.website %></li>
+  <li><%= @venue.category %></li>
+  <li><%= @venue.owner %></li>
+</ul>
+      t.string :name
+      t.string :location
+      t.integer :age
+      t.string :email
+      t.string :phone
+      t.integer :capacity
+      t.string :music
+      t.string :dress_code
+      t.string :website
+      t.string :category
+      t.belongs_to :owner, index: true
 
 <%= link_to 'Edit', edit_venue_path(@venue) %>
