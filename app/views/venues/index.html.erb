@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Venues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @venues.each do |venue| %>
+      <ul>
+        <%= link_to venue do %>
+          <li><%= venue.name %></li>
+        <% end %>
+        <li><%= venue.location %></li>
+        <li><%= venue.age %></li>
+      </ul>
+    <% end %>
+  </tbody>
+</table>

@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :profiles, only: [:new, :create, :edit, :update]
   end
+  resources :venues
 end

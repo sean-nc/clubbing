@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
-  before_action :is_users_profile?, only: [:edit, :update]
+  before_action :is_users_profile?, only: [:edit, :update, :destroy]
 
   def new
     @profile = current_user.build_profile
@@ -24,6 +24,11 @@ class ProfilesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @venue.destroy
+    redirect_to venues_url, notice: 'Venue was successfully destroyed.'
   end
 
   private

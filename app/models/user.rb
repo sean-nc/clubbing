@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :email, presence: :true, uniqueness: { case_sensitive: false }
 
   has_one :profile
+  has_many :venues, foreign_key: :owner_id
 end
