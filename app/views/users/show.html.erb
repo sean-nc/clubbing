@@ -5,6 +5,7 @@
 <% end %>
 
 <% if current_user.profile %>
+  <li><%= current_user.username %></li>
   <li><%= current_user.profile.first_name %></li>
   <li><%= current_user.profile.last_name %></li>
   <li><%= current_user.profile.gender %></li>

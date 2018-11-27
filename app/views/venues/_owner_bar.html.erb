@@ -1,0 +1,4 @@
+<% if current_user == @venue.owner || current_user && current_user.admin %>
+  <!-- new event -->
+  <%= link_to "Employees", employees_venue_path(@venue) %>
+<% end %>

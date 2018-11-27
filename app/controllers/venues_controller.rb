@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-  before_action :set_venue, only: [:show, :edit, :update, :destroy]
+  before_action :set_venue, only: [:show, :edit, :update, :destroy, :employees]
   before_action :is_admin?, only: [:new, :create, :destroy]
   before_action :is_owner?, only: [:edit, :update]
 
@@ -37,6 +37,10 @@ class VenuesController < ApplicationController
   def destroy
     @venue.destroy
     redirect_to venues_url, notice: 'Venue was successfully destroyed.'
+  end
+
+  def employees
+    @users = User.with_role(:employee, @venue)
   end
 
   private

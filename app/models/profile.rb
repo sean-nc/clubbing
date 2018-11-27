@@ -1,4 +1,5 @@
 class Profile < ApplicationRecord
+  validates :username, presence: :true, uniqueness: { case_sensitive: false }
   validates :first_name, presence: :true
   validates :last_name, presence: :true
   validates :date_of_birth, presence: :true

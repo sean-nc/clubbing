@@ -1,4 +1,6 @@
 class Venue < ApplicationRecord
+  resourcify
+
   validates :name, presence: true
   validates :location, presence: true
   validates :age, presence: true
