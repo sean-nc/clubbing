@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-  before_action :set_venue, only: [:show, :edit, :update, :destroy, :employees]
+  before_action :set_venue, only: [:show, :edit, :update, :destroy, :employees, :add_employee]
   before_action :is_admin?, only: [:new, :create, :destroy]
   before_action :is_owner?, only: [:edit, :update]
 
@@ -41,6 +41,12 @@ class VenuesController < ApplicationController
 
   def employees
     @users = User.with_role(:employee, @venue)
+  end
+
+  def add_employee
+    if params[:email]
+      @user = User.find_by(email: params[:email])
+    end
   end
 
   private

@@ -1,0 +1,15 @@
+<%= form_tag add_employee_venue_path(@venue), method: :get do %>
+  <p>enter email</p>
+
+  <div class="field">
+    <%= text_field_tag :email %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+<% if @user.present? %>
+  <%= @user.email %>
+<% end %>
