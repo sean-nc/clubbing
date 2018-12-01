@@ -1,3 +1,5 @@
+Faker::Config.locale = 'en-CA'
+
 user = User.create(email: "sean@email.com",
                    password: "password",
                    password_confirmation: "password",
@@ -9,11 +11,10 @@ user.create_profile(username: "sean",
                     gender: "Male",
                     date_of_birth: Date.new(1990, 2, 11))
 
-
 venue = Venue.create(name: "EFS",
                      location: "Toronto",
                      age: 19,
-                     email: "email@email.com",
+                     email: "efs@email.com",
                      phone: "(416) 888-9212",
                      capacity: 300,
                      music: "Hip Hop",
@@ -45,4 +46,20 @@ venue = Venue.create(name: "EFS",
                       date_of_birth: birth_date)
 
   user.add_role(:employee, venue) if i.even?
+end
+
+user = User.find(2)
+
+10.times do |n|
+  venue = Venue.create(name: "venue#{n}",
+                       location: "Toronto",
+                       age: 19,
+                       email: "venue#{n}@email.com",
+                       phone: Faker::PhoneNumber.cell_phone,
+                       capacity: (200..400),
+                       music: Faker::Music.genre,
+                       dress_code: "Casual",
+                       website: "https://website#{n}.com",
+                       category: "Club",
+                       owner_id: user.id)
 end

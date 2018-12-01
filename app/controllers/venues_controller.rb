@@ -1,7 +1,7 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy, :employees, :add_employee]
   before_action :is_admin?, only: [:new, :create, :destroy]
-  before_action :is_owner?, only: [:edit, :update]
+  before_action :is_owner?, only: [:edit, :update, :employees, :add_employee]
 
   def index
     @venues = Venue.all
@@ -41,11 +41,29 @@ class VenuesController < ApplicationController
 
   def employees
     @users = User.with_role(:employee, @venue)
-  end
 
-  def add_employee
     if params[:email]
       @user = User.find_by(email: params[:email])
+      if @user.has_role?(:employee, @venue)
+        return redirect_to employees_venue_path(@venue),
+               notice: "#{@user.email} is already employeed."
+      end
+    end
+
+    if params[:delete_user]
+      user = User.find(params[:delete_user])
+      user.remove_role(:employee, @venue)
+      redirect_to employees_venue_path(@venue), notice: "#{user.email} was removed as an employee."
+    end
+
+    if params[:add_user]
+      user = User.find(params[:add_user])
+      if user.has_role?(:employee, @venue)
+        return redirect_to employees_venue_path(@venue),
+               notice: "#{user.email} is already employeed."
+      end
+      user.add_role(:employee, @venue)
+      redirect_to employees_venue_path(@venue), notice: "#{user.email} was added as an employee."
     end
   end
 

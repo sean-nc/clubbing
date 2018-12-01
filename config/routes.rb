@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :venues do
     member do
       get 'employees'
-      get 'add_employee'
     end
   end
 end

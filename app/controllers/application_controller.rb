@@ -13,8 +13,14 @@ class ApplicationController < ActionController::Base
     end
 
     def is_owner?
-      unless current_user and current_user == @venue.owner or current_user.admin
+      unless current_user and (current_user == @venue.owner or current_user.admin)
         redirect_to @venue, notice: 'You do not have permission for that page.'
+      end
+    end
+
+    def has_profile?
+      unless current_user and current_user.profile.exists?
+        redirect_to new_user_profile_path, notice: "Please fill out your profile first."
       end
     end
 end

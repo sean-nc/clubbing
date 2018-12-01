@@ -1,5 +1,45 @@
+<%= form_tag employees_venue_path(@venue), method: :get do %>
+  <p>enter email</p>
+
+  <div class="field">
+    <%= text_field_tag :email %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+<% if @user.present? %>
+  <%= form_tag employees_venue_path(@venue), method: :get do |form| %>
+    <% unless @user.profile.present? %>
+      <li>
+          <%= @user.profile.first_name %> <%= @user.profile.last_name %>
+      </li>
+    <% end %>
+
+    <li><%= @user.email %></li>
+
+    <%= hidden_field_tag :add_user, @user.id %>
+
+    <li><%= submit_tag "Add Employee" %></li>
+  <% end %>
+<% end %>
+
 <ul>
   <% @users.each do |user| %>
-    <li><%= user.profile.first_name %> <%= user.profile.last_name %></li>
+    <%= form_tag employees_venue_path(@venue), method: :get do |form| %>
+      <% unless user.profile.present? %>
+        <li>
+            <%= user.profile.first_name %> <%= user.profile.last_name %>
+        </li>
+      <% end %>
+
+        <li><%= user.email %></li>
+
+        <%= hidden_field_tag :delete_user, user.id %>
+
+        <li><%= submit_tag "Delete Employee" %></li>
+    <% end %>
   <% end %>
 </ul>
