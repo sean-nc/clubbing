@@ -44,7 +44,7 @@ class VenuesController < ApplicationController
 
     if params[:email]
       @user = User.find_by(email: params[:email])
-      if @user.has_role?(:employee, @venue)
+      if @user and @user.has_role?(:employee, @venue)
         return redirect_to employees_venue_path(@venue),
                notice: "#{@user.email} is already employeed."
       end
