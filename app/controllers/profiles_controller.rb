@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
   before_action :is_users_profile?, only: [:edit, :update]
+  skip_before_action :has_profile?
 
   def new
     @profile = current_user.build_profile
